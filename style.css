@@ -269,30 +269,70 @@ footer{padding:44px 0 60px;}
    for reduced-motion users, where it reads as confusing rather than cool. */
 main{ position:relative; }
 
-.stack-section{
+/* ---------- Stacked floating sections ----------
+   Each section sits slightly over the previous block and lifts as it comes into focus,
+   creating the layered “next item floats onto the previous item” interaction. */
+main > section.block,
+main > .stack-section{
   position:sticky;
-  top:0;
+  top:18px;
+  z-index:1;
   background:var(--paper);
-  box-shadow:0 -28px 60px -16px rgba(20,20,43,.18);
+  box-shadow:0 -28px 60px -16px rgba(20,20,43,.16);
+  transition:transform .45s cubic-bezier(.2,.8,.2,1), box-shadow .45s ease, border-color .45s ease;
 }
-.stack-section.tinted{ background:var(--paper-dim); }
+main > section.block.tinted,
+main > .stack-section.tinted{ background:var(--paper-dim); }
 
-.stack-section::before{
+main > section.block + section.block,
+main > .stack-section + .stack-section,
+main > section.block + .stack-section,
+main > .stack-section + section.block{
+  margin-top:-52px;
+  z-index:2;
+  transform:translateY(30px) scale(.995);
+}
+
+main > section.block:hover,
+main > .stack-section:hover{
+  transform:translateY(-8px) scale(1.003);
+  box-shadow:0 28px 46px -20px rgba(20,20,43,.22);
+}
+
+main > section.block::before,
+main > .stack-section::before{
   content:"";
   position:absolute; top:0; left:0; right:0; height:3px;
   background:linear-gradient(90deg, var(--quasar) 0%, var(--uv) 55%, var(--cyan) 100%);
   opacity:0; transform:scaleX(0); transform-origin:left;
   transition:opacity .5s ease, transform .6s ease;
 }
-.stack-section.is-pinned::before{ opacity:1; transform:scaleX(1); }
+main > section.block.is-pinned::before,
+main > .stack-section.is-pinned::before,
+main > section.block:hover::before,
+main > .stack-section:hover::before{ opacity:1; transform:scaleX(1); }
 
 @media (max-width:860px){
-  .stack-section{ position:static; box-shadow:none; }
-  .stack-section::before{ display:none; }
+  main > section.block,
+  main > .stack-section{
+    position:static;
+    margin-top:0 !important;
+    transform:none !important;
+    box-shadow:none;
+  }
+  main > section.block::before,
+  main > .stack-section::before{ display:none; }
 }
 @media (prefers-reduced-motion: reduce){
-  .stack-section{ position:static; box-shadow:none; }
-  .stack-section::before{ display:none; }
+  main > section.block,
+  main > .stack-section{
+    position:static;
+    margin-top:0 !important;
+    transform:none !important;
+    box-shadow:none;
+  }
+  main > section.block::before,
+  main > .stack-section::before{ display:none; }
 }
 
 /* ---------- Hover lift for experience / blog cards ---------- */
