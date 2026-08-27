@@ -254,7 +254,16 @@ section.block.tinted{background:var(--paper-dim);}
 .block-head p{color:var(--ink-soft); max-width:52ch; margin:8px 0 0; font-size:0.98rem;}
 
 /* ---------- Gallery ---------- */
+.gallery-section-switcher{border:1px solid var(--hairline); padding:18px; margin-bottom:40px; background:color-mix(in srgb, var(--paper) 55%, transparent);}
+.gallery-section-label{font-family:var(--mono); font-size:.68rem; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:12px;}
+.gallery-tabs{display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:8px;}
+.gallery-tab{font-family:var(--mono); font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-soft); background:transparent; padding:12px 14px; border:1px solid var(--hairline); cursor:pointer;}
+.gallery-tab:hover, .gallery-tab:focus-visible, .gallery-tab.is-active{color:var(--ink); border-color:var(--quasar);}
+.gallery-tab.is-active{background:var(--quasar); color:#fff;}
+.gallery-tab:focus-visible{outline:2px solid var(--quasar); outline-offset:3px;}
+.gallery-group.is-hidden{display:none;}
 .gallery-group + .gallery-group{margin-top:42px;}
+.gallery-group{border-top:2px solid var(--quasar); padding-top:18px;}
 .gallery-group-head{
   display:flex; align-items:baseline; justify-content:space-between;
   gap:18px; padding-bottom:12px; border-bottom:1px solid var(--hairline);
@@ -262,6 +271,7 @@ section.block.tinted{background:var(--paper-dim);}
 .gallery-group-head h3{
   font-family:var(--display); font-size:1.35rem; margin:0;
 }
+.gallery-group-description{color:var(--ink-soft); max-width:70ch; margin:14px 0 0; font-size:.95rem;}
 .gallery-count{
   font-family:var(--mono); font-size:0.7rem; color:var(--ink-soft);
   letter-spacing:.07em; text-transform:uppercase;
@@ -279,6 +289,9 @@ section.block.tinted{background:var(--paper-dim);}
   text-transform:uppercase; letter-spacing:.05em;
 }
 .gallery-item figcaption span{color:var(--quasar-deep);}
+.astro-slideshow{padding-top:18px;}
+.astro-slide img{aspect-ratio:4 / 3; object-fit:cover;}
+@keyframes astroSlideIn{from{opacity:0; transform:translateX(22px);}to{opacity:1; transform:translateX(0);}}
 
 /* ---------- Dispatch cards (experience) ---------- */
 .dispatch-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:0; border-top:1px solid var(--hairline);}
@@ -349,6 +362,7 @@ footer{padding:44px 0 60px;}
   .dispatch-grid{grid-template-columns:1fr;}
   .dispatch{border-right:none;}
   .gallery-grid{grid-template-columns:repeat(2,1fr);}
+  .gallery-tabs{grid-template-columns:1fr;}
   .two-col{grid-template-columns:1fr;}
   .card-grid{grid-template-columns:1fr;}
   .pub-entry{grid-template-columns:1fr; gap:6px;}

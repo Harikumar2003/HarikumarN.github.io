@@ -26,6 +26,20 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  const galleryTabs = document.querySelectorAll('.gallery-tab');
+  const galleryGroups = document.querySelectorAll('.gallery-group');
+  galleryTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const targetId = tab.dataset.galleryTarget;
+      galleryTabs.forEach(item => {
+        const isSelected = item === tab;
+        item.classList.toggle('is-active', isSelected);
+        item.setAttribute('aria-selected', String(isSelected));
+      });
+      galleryGroups.forEach(group => group.classList.toggle('is-hidden', group.id !== targetId));
+    });
+  });
+
   const els = document.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window) {
     const io = new IntersectionObserver((entries) => {
