@@ -341,8 +341,8 @@ section.block.tinted{background:var(--paper-dim);}
 .card-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
 .postcard{border:1px solid var(--hairline); background:color-mix(in srgb, var(--paper) 58%, transparent); padding:26px; display:flex; flex-direction:column; gap:12px; min-height:220px;}
 .postcard .tag-strip{width:38px; height:5px; background:var(--cyan);}
-.postcard-photos{display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:8px; margin-top:2px;}
-.postcard-photos img{width:100%; height:120px; object-fit:cover; border:1px solid var(--hairline); border-radius:10px; display:block;}
+.postcard-photos{display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:8px; margin-top:2px; align-items:start;}
+.postcard-photos img{width:100%; height:auto; max-height:none; object-fit:contain; border:1px solid var(--hairline); border-radius:10px; display:block; background:var(--paper);}
 .postcard h3{font-family:var(--display); font-weight:700; font-size:1.1rem; margin:0;}
 .postcard p{color:var(--ink-soft); font-size:0.9rem; margin:0; flex:1;}
 .postcard .status{font-family:var(--mono); font-size:0.7rem; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-soft);}
@@ -367,6 +367,7 @@ footer{padding:44px 0 60px;}
   .gallery-tabs{grid-template-columns:1fr;}
   .two-col{grid-template-columns:1fr;}
   .card-grid{grid-template-columns:1fr;}
+  .postcard-photos{grid-template-columns:1fr;}
   .pub-entry{grid-template-columns:1fr; gap:6px;}
 }
 @media (max-width:520px){
